@@ -76,7 +76,7 @@ namespace Discord.Audio
             _gatewayState = (int)ConnectionState.Disconnected;
 
             //Logging
-            //Logger = client.Log.CreateLogger($"AudioClient #{id}");
+            Logger = client.Log.CreateLogger($"AudioClient #{id}");
 
             //Async
             _taskManager = new TaskManager(Cleanup, false);
@@ -237,7 +237,7 @@ namespace Discord.Audio
             {
                 switch (e.Type)
                 {
-                    /*case "VOICE_STATE_UPDATE":
+                    case "VOICE_STATE_UPDATE":
                         {
                             var data = e.Payload.ToObject<VoiceStateUpdateEvent>(Serializer);
                             if (data.GuildId == VoiceSocket.Server?.Id && data.UserId == Service.Client.CurrentUser?.Id)
@@ -270,19 +270,6 @@ namespace Discord.Audio
                                     var host = "wss://" + e.Payload.Value<string>("endpoint").Split(':')[0];
                                     await VoiceSocket.Connect(host, data.Token, id.Value, GatewaySocket.SessionId, CancelToken).ConfigureAwait(false);
                                 }
-                            }
-                        }
-                        break;*/
-                        case "rawr":
-                        var data = e.Payload.ToObject<VoiceServerUpdateEvent>(Serializer);
-                        if (data.GuildId == VoiceSocket.Server?.Id)
-                        {
-                            var client = Service.Client;
-                            var id = client.CurrentUser?.Id;
-                            if (id != null)
-                            {
-                                var host = "wss://" + e.Payload.Value<string>("endpoint").Split(':')[0];
-                                await VoiceSocket.Connect(host, data.Token, id.Value, GatewaySocket.SessionId, CancelToken).ConfigureAwait(false);
                             }
                         }
                         break;
