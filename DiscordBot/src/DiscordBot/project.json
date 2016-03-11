@@ -1,0 +1,70 @@
+{
+	"version": "1.0.0-*",
+	"description": "DiscordBot",
+	"authors": [ "RogueException" ],
+	"tags": [ "discord", "discordapp" ],
+	"projectUrl": "https://github.com/RogueException/DiscordBot",
+	"licenseUrl": "http://opensource.org/licenses/MIT",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/RogueException/DiscordBot"
+	},
+  "exclude": [ "config" ],
+  "compilationOptions": {
+    "emitEntryPoint": true
+  },
+
+	"commands": {
+		"start": "DiscordBot"
+	},
+
+	"configurations": {
+		"PrivateDebug": {
+			"compilationOptions": {
+				"define": [
+					"DEBUG",
+					"TRACE",
+					"PRIVATE"
+				]
+			}
+		},
+		"PrivateRelease": {
+			"compilationOptions": {
+				"define": [
+					"RELEASE",
+					"PRIVATE"
+				]
+			}
+		}
+	},
+
+    "dependencies": {
+        "Discord.Net": "0.9.0-rc3-3",
+        "Discord.Net.Audio": "0.9.0-rc3",
+        "Discord.Net.Commands": "0.9.0-rc3-1",
+        "Discord.Net.Modules": "0.9.0-rc3",
+        "Newtonsoft.Json": "8.0.2"
+    },
+
+  "frameworks": {
+    "dnx451": {
+      "frameworkAssemblies": {
+        "System.Net.Http": "4.0.0.0",
+        "System.Xml": "4.0.0.0",
+        "System.Xml.Linq": "4.0.0.0"
+      },
+      "dependencies": {
+        "NAudio": "1.7.3"
+      }
+    },
+    "dnxcore50": {
+      "dependencies": {
+        "System.Console": "4.0.0-beta-23516",
+        "System.Diagnostics.Process": "4.1.0-beta-23516",
+        "System.Net.Http": "4.0.1-beta-23516",
+        "System.Runtime.Extensions": "4.0.11-beta-23516",
+        "System.Xml.XDocument": "4.0.11-beta-23516"
+      }
+    }
+  }
+}
