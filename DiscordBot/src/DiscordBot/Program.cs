@@ -42,7 +42,7 @@ namespace DiscordBot
                 x.MessageCacheSize = 0;
                 x.UsePermissionsCache = true;
                 x.EnablePreUpdateEvents = true;
-                x.LogLevel = LogSeverity.Debug;
+                x.LogLevel = LogSeverity.Error;
                 x.LogHandler = OnLogMessage;
             })
             .UsingCommands(x =>
