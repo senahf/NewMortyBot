@@ -92,7 +92,7 @@ namespace DiscordBot
                         await _client.Connect(GlobalSettings.Discord.Email, GlobalSettings.Discord.Password);
                         _client.SetGame("too night for ur shit");
                         //await _client.ClientAPI.Send(new Discord.API.Client.Rest.HealthRequest());
-                        break;
+                        break; // test
                     }
                     catch (Exception ex)
                     {
