@@ -539,11 +539,11 @@ namespace Discord
                             {
                                 var server = AddServer(data.Id);
                                 server.Update(data);
-                                
+
                                 if (data.Unavailable != false)
-                                    Logger.Info($"GUILD_CREATE: {server.Path}");
+                                { }//    Logger.Info($"GUILD_CREATE: {server.Path}");
                                 else
-                                    Logger.Info($"GUILD_AVAILABLE: {server.Path}");
+                                { }// Logger.Info($"GUILD_AVAILABLE: {server.Path}");
 
                                 if (data.Unavailable != false)
                                 {
@@ -566,11 +566,11 @@ namespace Discord
                             {
                                 var before = Config.EnablePreUpdateEvents ? server.Clone() : null;
                                 server.Update(data);
-                                Logger.Info($"GUILD_UPDATE: {server.Path}");
+                                //Logger.Info($"GUILD_UPDATE: {server.Path}");
                                 OnServerUpdated(before, server);
                             }
                             else
-                                Logger.Warning("GUILD_UPDATE referenced an unknown guild.");
+                            { }// Logger.Warning("GUILD_UPDATE referenced an unknown guild.");
                         }
                         break;
                     case "GUILD_DELETE":
@@ -580,16 +580,16 @@ namespace Discord
                             if (server != null)
                             {
                                 if (data.Unavailable != true)
-                                    Logger.Info($"GUILD_DELETE: {server.Path}");
+                                { }// Logger.Info($"GUILD_DELETE: {server.Path}");
                                 else
-                                    Logger.Info($"GUILD_UNAVAILABLE: {server.Path}");
+                                { }//   Logger.Info($"GUILD_UNAVAILABLE: {server.Path}");
 
                                 //OnServerUnavailable(server);
                                 //if (data.Unavailable != true)
                                 OnLeftServer(server);
                             }
                             else
-                                Logger.Warning("GUILD_DELETE referenced an unknown guild.");
+                            { }// Logger.Warning("GUILD_DELETE referenced an unknown guild.");
                         }
                         break;
 
@@ -605,14 +605,14 @@ namespace Discord
                                 if (server != null)
                                     channel = server.AddChannel(data.Id, true);
                                 else
-                                    Logger.Warning("CHANNEL_CREATE referenced an unknown guild.");
+                                { }//   Logger.Warning("CHANNEL_CREATE referenced an unknown guild.");
                             }
                             else
                                 channel = AddPrivateChannel(data.Id, data.Recipient.Id);
                             if (channel != null)
                             {
                                 channel.Update(data);
-                                Logger.Info($"CHANNEL_CREATE: {channel.Path}");
+                                //Logger.Info($"CHANNEL_CREATE: {channel.Path}");
                                 OnChannelCreated(channel);
                             }
                         }
@@ -625,11 +625,11 @@ namespace Discord
                             {
                                 var before = Config.EnablePreUpdateEvents ? channel.Clone() : null;
                                 channel.Update(data);
-                                Logger.Info($"CHANNEL_UPDATE: {channel.Path}");
+                                { }// Logger.Info($"CHANNEL_UPDATE: {channel.Path}");
                                 OnChannelUpdated(before, channel);
                             }
                             else
-                                Logger.Warning("CHANNEL_UPDATE referenced an unknown channel.");
+                            { }// Logger.Warning("CHANNEL_UPDATE referenced an unknown channel.");
                         }
                         break;
                     case "CHANNEL_DELETE":
@@ -638,11 +638,11 @@ namespace Discord
                             var channel = RemoveChannel(data.Id);
                             if (channel != null)
                             {
-                                Logger.Info($"CHANNEL_DELETE: {channel.Path}");
+                                //Logger.Info($"CHANNEL_DELETE: {channel.Path}");
                                 OnChannelDestroyed(channel);
                             }
                             else
-                                Logger.Warning("CHANNEL_DELETE referenced an unknown channel.");
+                            { }// Logger.Warning("CHANNEL_DELETE referenced an unknown channel.");
                         }
                         break;
 
@@ -656,11 +656,11 @@ namespace Discord
                                 var user = server.AddUser(data.User.Id, true, true);
                                 user.Update(data);
                                 user.UpdateActivity();
-                                Logger.Info($"GUILD_MEMBER_ADD: {user.Path}");
+                                //Logger.Info($"GUILD_MEMBER_ADD: {user.Path}");
                                 OnUserJoined(user);
                             }
                             else
-                                Logger.Warning("GUILD_MEMBER_ADD referenced an unknown guild.");
+                            { }//  Logger.Warning("GUILD_MEMBER_ADD referenced an unknown guild.");
                         }
                         break;
                     case "GUILD_MEMBER_UPDATE":
@@ -674,14 +674,14 @@ namespace Discord
                                 {
                                     var before = Config.EnablePreUpdateEvents ? user.Clone() : null;
                                     user.Update(data);
-                                    Logger.Info($"GUILD_MEMBER_UPDATE: {user.Path}");
+                                    // Logger.Info($"GUILD_MEMBER_UPDATE: {user.Path}");
                                     OnUserUpdated(before, user);
                                 }
                                 else
-                                    Logger.Warning("GUILD_MEMBER_UPDATE referenced an unknown user.");
+                                { }//Logger.Warning("GUILD_MEMBER_UPDATE referenced an unknown user.");
                             }
                             else
-                                Logger.Warning("GUILD_MEMBER_UPDATE referenced an unknown guild.");
+                            { }// Logger.Warning("GUILD_MEMBER_UPDATE referenced an unknown guild.");
                         }
                         break;
                     case "GUILD_MEMBER_REMOVE":
@@ -693,14 +693,14 @@ namespace Discord
                                 var user = server.RemoveUser(data.User.Id);
                                 if (user != null)
                                 {
-                                    Logger.Info($"GUILD_MEMBER_REMOVE: {user.Path}");
+                                    //Logger.Info($"GUILD_MEMBER_REMOVE: {user.Path}");
                                     OnUserLeft(user);
                                 }
                                 else
-                                    Logger.Warning("GUILD_MEMBER_REMOVE referenced an unknown user.");
+                                { }// Logger.Warning("GUILD_MEMBER_REMOVE referenced an unknown user.");
                             }
                             else
-                                Logger.Warning("GUILD_MEMBER_REMOVE referenced an unknown guild.");
+                            { }// Logger.Warning("GUILD_MEMBER_REMOVE referenced an unknown guild.");
                         }
                         break;
                     case "GUILD_MEMBERS_CHUNK":
@@ -714,7 +714,7 @@ namespace Discord
                                     var user = server.AddUser(memberData.User.Id, true, false);
                                     user.Update(memberData);
                                 }
-                                Logger.Verbose($"GUILD_MEMBERS_CHUNK: {data.Members.Length} users");
+                             //   Logger.Verbose($"GUILD_MEMBERS_CHUNK: {data.Members.Length} users");
 
                                 if (server.CurrentUserCount >= server.UserCount) //Finished downloading for there
                                 {
@@ -738,7 +738,7 @@ namespace Discord
                                 }
                             }
                             else
-                                Logger.Warning("GUILD_MEMBERS_CHUNK referenced an unknown guild.");
+                            { }// Logger.Warning("GUILD_MEMBERS_CHUNK referenced an unknown guild.");
                         }
                         break;
 
@@ -751,11 +751,11 @@ namespace Discord
                             {
                                 var role = server.AddRole(data.Data.Id);
                                 role.Update(data.Data, false);
-                                Logger.Info($"GUILD_ROLE_CREATE: {role.Path}");
+                                { }// Logger.Info($"GUILD_ROLE_CREATE: {role.Path}");
                                 OnRoleCreated(role);
                             }
                             else
-                                Logger.Warning("GUILD_ROLE_CREATE referenced an unknown guild.");
+                            { }// Logger.Warning("GUILD_ROLE_CREATE referenced an unknown guild.");
                         }
                         break;
                     case "GUILD_ROLE_UPDATE":
@@ -769,14 +769,14 @@ namespace Discord
                                 {
                                     var before = Config.EnablePreUpdateEvents ? role.Clone() : null;
                                     role.Update(data.Data, true);
-                                    Logger.Info($"GUILD_ROLE_UPDATE: {role.Path}");
+                                    //Logger.Info($"GUILD_ROLE_UPDATE: {role.Path}");
                                     OnRoleUpdated(before, role);
                                 }
                                 else
-                                    Logger.Warning("GUILD_ROLE_UPDATE referenced an unknown role.");
+                                { }//   Logger.Warning("GUILD_ROLE_UPDATE referenced an unknown role.");
                             }
                             else
-                                Logger.Warning("GUILD_ROLE_UPDATE referenced an unknown guild.");
+                            { }//       Logger.Warning("GUILD_ROLE_UPDATE referenced an unknown guild.");
                         }
                         break;
                     case "GUILD_ROLE_DELETE":
@@ -788,14 +788,14 @@ namespace Discord
                                 var role = server.RemoveRole(data.RoleId);
                                 if (role != null)
                                 {
-                                    Logger.Info($"GUILD_ROLE_DELETE: {role.Path}");
+                                  //  Logger.Info($"GUILD_ROLE_DELETE: {role.Path}");
                                     OnRoleDeleted(role);
                                 }
                                 else
-                                    Logger.Warning("GUILD_ROLE_DELETE referenced an unknown role.");
+                                { }// Logger.Warning("GUILD_ROLE_DELETE referenced an unknown role.");
                             }
                             else
-                                Logger.Warning("GUILD_ROLE_DELETE referenced an unknown guild.");
+                            { }// Logger.Warning("GUILD_ROLE_DELETE referenced an unknown guild.");
                         }
                         break;
 
@@ -809,14 +809,14 @@ namespace Discord
                                 var user = server.GetUser(data.User.Id);
                                 if (user != null)
                                 {
-                                    Logger.Info($"GUILD_BAN_ADD: {user.Path}");
+                                   // Logger.Info($"GUILD_BAN_ADD: {user.Path}");
                                     OnUserBanned(user);
                                 }
                                 else
-                                    Logger.Warning("GUILD_BAN_ADD referenced an unknown user.");
+                                { }//     Logger.Warning("GUILD_BAN_ADD referenced an unknown user.");
                             }
                             else
-                                Logger.Warning("GUILD_BAN_ADD referenced an unknown guild.");
+                            { }//    Logger.Warning("GUILD_BAN_ADD referenced an unknown guild.");
                         }
                         break;
                     case "GUILD_BAN_REMOVE":
@@ -827,11 +827,11 @@ namespace Discord
                             {
                                 var user = new User(this, data.User.Id, server);
                                 user.Update(data.User);
-                                Logger.Info($"GUILD_BAN_REMOVE: {user.Path}");
+                            //{}    Logger.Info($"GUILD_BAN_REMOVE: {user.Path}");
                                 OnUserUnbanned(user);
                             }
                             else
-                                Logger.Warning("GUILD_BAN_REMOVE referenced an unknown guild.");
+                            { }//   Logger.Warning("GUILD_BAN_REMOVE referenced an unknown guild.");
                         }
                         break;
 
@@ -872,12 +872,12 @@ namespace Discord
 
                                     msg.Update(data);
                                     user.UpdateActivity();
-                                    
-                                    Logger.Verbose($"MESSAGE_CREATE: {channel.Path} ({user.Name ?? "Unknown"})");
+
+                                   // Logger.Verbose($"MESSAGE_CREATE: {channel.Path} ({user.Name ?? "Unknown"})");
                                     OnMessageReceived(msg);
                                 }
                                 else
-                                    Logger.Warning("MESSAGE_CREATE referenced an unknown user.");
+                                { }// Logger.Warning("MESSAGE_CREATE referenced an unknown user.");
                             }
                             else
                                 Logger.Warning("MESSAGE_CREATE referenced an unknown channel.");
@@ -892,7 +892,7 @@ namespace Discord
                                 var msg = channel.GetMessage(data.Id, data.Author?.Id);
                                 var before = Config.EnablePreUpdateEvents ? msg.Clone() : null;
                                 msg.Update(data);
-                                Logger.Verbose($"MESSAGE_UPDATE: {channel.Path} ({data.Author?.Username ?? "Unknown"})");
+                                { }//Logger.Verbose($"MESSAGE_UPDATE: {channel.Path} ({data.Author?.Username ?? "Unknown"})");
                                 OnMessageUpdated(before, msg);
                             }
                             else
@@ -906,11 +906,11 @@ namespace Discord
                             if (channel != null)
                             {
                                 var msg = channel.RemoveMessage(data.Id);
-                                Logger.Verbose($"MESSAGE_DELETE: {channel.Path} ({msg.User?.Name ?? "Unknown"})");
+                                { }//Logger.Verbose($"MESSAGE_DELETE: {channel.Path} ({msg.User?.Name ?? "Unknown"})");
                                 OnMessageDeleted(msg);
                             }
                             else
-                                Logger.Warning("MESSAGE_DELETE referenced an unknown channel.");
+                            { }//Logger.Warning("MESSAGE_DELETE referenced an unknown channel.");
                         }
                         break;
 
@@ -940,7 +940,7 @@ namespace Discord
                             if (user != null)
                             {
                                 if (Config.LogLevel == LogSeverity.Debug)
-                                    Logger.Debug($"PRESENCE_UPDATE: {user.Path}");
+                                { }//Logger.Debug($"PRESENCE_UPDATE: {user.Path}");
                                 var before = Config.EnablePreUpdateEvents ? user.Clone() : null;
                                 user.Update(data);
                                 OnUserUpdated(before, user);
@@ -968,7 +968,7 @@ namespace Discord
                                 if (user != null)
                                 {
                                     if (Config.LogLevel == LogSeverity.Debug)
-                                        Logger.Debug($"TYPING_START: {channel.Path} ({user.Name})");
+                                    { }//Logger.Debug($"TYPING_START: {channel.Path} ({user.Name})");
                                     OnUserIsTypingUpdated(channel, user);
                                     user.UpdateActivity();
                                 }
@@ -988,8 +988,8 @@ namespace Discord
                                 var user = server.GetUser(data.UserId);
                                 if (user != null)
                                 {
-                                    if (Config.LogLevel == LogSeverity.Debug)
-                                        Logger.Debug($"VOICE_STATE_UPDATE: {user.Path}");
+                                    if (Config.LogLevel == LogSeverity.Debug) { }
+                                        //Logger.Debug($"VOICE_STATE_UPDATE: {user.Path}");
                                     var before = Config.EnablePreUpdateEvents ? user.Clone() : null;
                                     user.Update(data);
                                     //Logger.Verbose($"Voice Updated: {server.Name}/{user.Name}");
@@ -998,8 +998,8 @@ namespace Discord
                                 /*else //Occurs when a user leaves a server
                                     Logger.Warning("VOICE_STATE_UPDATE referenced an unknown user.");*/
                             }
-                            else
-                                Logger.Warning("VOICE_STATE_UPDATE referenced an unknown server.");
+                            else { }
+                                //Logger.Warning("VOICE_STATE_UPDATE referenced an unknown server.");
                         }
                         break;
 
@@ -1014,7 +1014,7 @@ namespace Discord
                                 PrivateUser.Update(data);
                                 foreach (var server in _servers)
                                     server.Value.CurrentUser.Update(data);
-                                Logger.Info($"USER_UPDATE");
+                                // Logger.Info($"USER_UPDATE");
                                 OnProfileUpdated(before, CurrentUser);
                             }
                         }
@@ -1030,7 +1030,7 @@ namespace Discord
                     case "VOICE_SERVER_UPDATE":
                     case "GUILD_EMOJIS_UPDATE":
                     case "MESSAGE_ACK":
-                        Logger.Debug($"{e.Type} [Ignored]");
+                        //Logger.Debug($"{e.Type} [Ignored]");
                         break;
 
                     //Others
