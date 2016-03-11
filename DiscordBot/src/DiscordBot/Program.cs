@@ -42,7 +42,7 @@ namespace DiscordBot
                 x.MessageCacheSize = 0;
                 x.UsePermissionsCache = true;
                 x.EnablePreUpdateEvents = true;
-                x.LogLevel = LogSeverity.Error;
+                x.LogLevel = LogSeverity.Info;
                 x.LogHandler = OnLogMessage;
             })
             .UsingCommands(x =>
@@ -68,12 +68,12 @@ namespace DiscordBot
 
             _client.AddModule<AdminModule>("Admin", ModuleFilter.ServerWhitelist);
             _client.AddModule<ColorsModule>("Colors", ModuleFilter.ServerWhitelist);
-            _client.AddModule<FeedModule>("Feeds", ModuleFilter.ServerWhitelist);
-            _client.AddModule<GithubModule>("Repos", ModuleFilter.ServerWhitelist);
+            _client.AddModule<FeedModule>("Feeds", ModuleFilter.None);
+            _client.AddModule<GithubModule>("Repos", ModuleFilter.None);
             _client.AddModule<ModulesModule>("Modules", ModuleFilter.None);
             _client.AddModule<PublicModule>("Public", ModuleFilter.None);
             _client.AddModule<TwitchModule>("Twitch", ModuleFilter.ServerWhitelist);
-            _client.AddModule<StatusModule>("Status", ModuleFilter.ServerWhitelist);
+            _client.AddModule<StatusModule>("Status", ModuleFilter.None);
             //_client.AddModule(new ExecuteModule(env, exporter), "Execute", ModuleFilter.ServerWhitelist);
 
 #if PRIVATE
@@ -90,7 +90,7 @@ namespace DiscordBot
                     try
                     {
                         await _client.Connect(GlobalSettings.Discord.Email, GlobalSettings.Discord.Password);
-                        _client.SetGame("Discord.Net");
+                        _client.SetGame("too night for ur shit");
                         //await _client.ClientAPI.Send(new Discord.API.Client.Rest.HealthRequest());
                         break;
                     }
