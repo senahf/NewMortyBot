@@ -1,5 +1,6 @@
 # New MortyBot
 DNX // http://discord.me/aegyo
+link not found 404
 
 Don't download zip/clone if you don't know how to build it. Use the release instead. thx
 
